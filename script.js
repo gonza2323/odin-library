@@ -28,6 +28,12 @@ function deleteBook(id) {
     }
 }
 
+function updateBookRead(id, read) {
+    const book = library.find(book => book.id === id);
+    if (book)
+        book.read = read;
+}
+
 
 // UI Logic
 
@@ -66,6 +72,10 @@ function createBookCard(book) {
 
     const deleteButton = card.querySelector(".delete");
     deleteButton.addEventListener("click", () => deleteCard(book.id));
+    
+    const readButton = card.querySelector(".read");
+    readButton.addEventListener("input",
+        () => changeReadStatus(book.id, readText, readCheck));
 
     return card;
 }
@@ -97,6 +107,12 @@ function deleteCard(id) {
 }
 
 
+function changeReadStatus(id, readText, checkbox) {
+    updateBookRead(id, checkbox.checked);
+    readText.textContent = checkbox.checked ? "Read" : "Unread";
+}
+
+
 const addBookButton = document.querySelector(".card.add");
 const addBookDialog = document.querySelector(".add-dialog");
 
@@ -114,5 +130,6 @@ addBookDialog.addEventListener("submit", addBookCard);
 addBook("1984", "George Orwell", "400", false);
 addBook("The Hobbit", "J.R.R Tolkien", "800", true);
 addBook("The Time Machine", "H.G. Wells", "500", true);
+addBook("Dune", "Frank Herbert", "800", false);
 
 displayBooks();
