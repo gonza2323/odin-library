@@ -12,16 +12,66 @@
 }
 
 :root {
-    --text: #231308;
-    --background: #eae8d8;
-    --background2: #d6d4c6;
-    --primary: #78583e;
-    --secondary: #ba9668;
-    --accent: #3e220f;
+    --text-50: #faf1ea;
+    --text-100: #f6e2d5;
+    --text-200: #ecc6ac;
+    --text-300: #e3a982;
+    --text-400: #d98c59;
+    --text-500: #d06f2f;
+    --text-600: #a65926;
+    --text-700: #7d431c;
+    --text-800: #532d13;
+    --text-900: #2a1609;
+    --text-950: #150b05;
+    
+    --background-50: #f6f5ee;
+    --background-100: #edecde;
+    --background-200: #dcd9bc;
+    --background-300: #cac59b;
+    --background-400: #b9b279;
+    
+    --primary-50: #f6f2ee;
+    --primary-100: #eee5dd;
+    --primary-200: #dccabc;
+    --primary-300: #cbb09a;
+    --primary-400: #ba9678;
+    --primary-500: #a87b57;
+    --primary-600: #876345;
+    --primary-700: #654a34;
+    --primary-800: #433123;
+    --primary-900: #221911;
+    --primary-950: #110c09;
+    
+    --secondary-50: #f7f3ee;
+    --secondary-100: #efe7dc;
+    --secondary-200: #dfcfb9;
+    --secondary-300: #cfb696;
+    --secondary-400: #bf9e73;
+    --secondary-500: #af8650;
+    --secondary-600: #8c6b40;
+    --secondary-700: #695030;
+    --secondary-800: #463620;
+    --secondary-900: #231b10;
+    --secondary-950: #110d08;
+    
+    --accent-50: #faf1ea;
+    --accent-100: #f5e2d6;
+    --accent-200: #ebc6ad;
+    --accent-300: #e1a984;
+    --accent-400: #d78d5b;
+    --accent-500: #cd7032;
+    --accent-600: #a45a28;
+    --accent-700: #7b431e;
+    --accent-800: #522d14;
+    --accent-900: #29160a;
+    --accent-950: #150b05;    
 }
 
+
+/* content */
+
 body {
-    background-color: var(--background);
+    background-color: var(--background-100);
     font-family: "Noto Serif";
     padding: 48px 48px;
     min-height: 100dvh;
@@ -31,9 +81,14 @@ body {
     gap: 36px;
 }
 
+h1 {
+    font-size: 56px;
+    color: var(--text-900);
+}
+
 .books {
     --min-size: 200px;
-    background-color: var(--background2);
+    background-color: var(--background-200);
     border-radius: 16px;
     padding: 16px;
     
@@ -45,22 +100,75 @@ body {
     gap: 16px;
 }
 
+
+/* generic card */
+
 .card {
-    background-color: var(--secondary);
     border-radius: 8px;
+    border-style: solid;
+    border-width: 4px;
 }
+
+svg {
+    fill: var(--text);
+    width: 100px;
+}
+
+
+/* book card */
 
 .book {
+    --card-color: var(--primary-800);
+    background-color: var(--background-100);
+    color: var(--card-color);
+    fill: var(--card-color);
+
     position: relative;
+    padding: 24px 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.add {
-    border: none;
-    
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.author {
+    font-size: 16px;
+}
+
+.pages {
+    font-size: 14px;
+}
+
+.read {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* add book card */
+
+.card.add {
+    --card-color: var(--background-200);
+    background-color: var(--primary-800);
+    color: var(--card-color);
+    fill: var(--card-color);
+    border-color: var(--accent-900);
+
+    font-size: 18px;
+    font-weight: bold;
+
     display: grid;
     grid-template-rows: min-content min-content;
     justify-items: center;
     align-content: center;
+    gap: 8px;
 
     transition: all ease-in-out 0.07s;
 }
@@ -70,13 +178,15 @@ body {
     scale: 1.05;
 }
 
-svg {
-    fill: var(--accent);
-    width: 100px;
-}
-
 .delete {
     position: absolute;
     top: 8px;
     right: 8px;
+}
+
+
+/* other */
+
+.hidden {
+    display: none;
 }
