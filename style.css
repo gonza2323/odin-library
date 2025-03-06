@@ -187,23 +187,19 @@ svg {
 
 /* add book dialog */
 
-.add-dialog {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    display: grid;
-    place-items: center;
-    background-color: transparent;
+.add-dialog:open {
+    position: fixed; /* Fixed positioning relative to the viewport */
+    top: 50%; /* Position the top of the dialog 50% from the top of the viewport */
+    left: 50%; /* Position the left of the dialog 50% from the left of the viewport */
+    transform: translate(-50%, -50%); /* Adjust the dialog to be perfectly centered */
+    
+    background-color: var(--background-100);
+    border: 6px solid var(--accent-900);
+    border-radius: 16px;
+    padding: 24px 48px;
 }
 
 .add-dialog form {
-    background-color: white;
-    border: 8px solid var(--accent-900);
-    border-radius: 16px;
-    padding: 24px 48px;
-    
     display: flex;
     flex-direction: column;
     align-items: stretch;

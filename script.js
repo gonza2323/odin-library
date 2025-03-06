@@ -68,6 +68,11 @@ function createBookCard(book) {
 }
 
 
+function addBookCard(event) {
+    console.log(event);
+}
+
+
 function deleteCard(id) {
     deleteBook(id);
     const card = document.querySelector(`.book[uuid="${id}"]`);
@@ -76,8 +81,11 @@ function deleteCard(id) {
     }
 }
 
-const addBookDialog = document.querySelector(".add-dialog");
+
 const addBookButton = document.querySelector(".card.add");
+const addBookDialog = document.querySelector(".add-dialog");
+
+
 addBookButton.addEventListener("click", () => {
     if (addBookDialog.open) {
         addBookDialog.close();
@@ -85,6 +93,11 @@ addBookButton.addEventListener("click", () => {
         addBookDialog.showModal();
     }
 });
+
+
+addBookDialog.addEventListener("submit", addBookCard);
+
+
 
 
 // test
