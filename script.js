@@ -16,6 +16,7 @@ function Book(title, author, noPages) {
 function addBook(title, author, noPages) {
     const book = new Book(title, author, noPages);
     library.push(book);
+    return book;
 }
 
 
@@ -69,7 +70,18 @@ function createBookCard(book) {
 
 
 function addBookCard(event) {
-    console.log(event);
+    const form = event.target;
+    
+    const title = form.elements["title"].value;
+    const author = form.elements["author"].value;
+    const noPages = form.elements["noPages"].value;
+    
+    const book = addBook(title, author, noPages);
+    const card = createBookCard(book);
+    const booksContainer = document.querySelector(".books");
+
+    booksContainer.appendChild(card);
+    form.reset();
 }
 
 
@@ -87,11 +99,7 @@ const addBookDialog = document.querySelector(".add-dialog");
 
 
 addBookButton.addEventListener("click", () => {
-    if (addBookDialog.open) {
-        addBookDialog.close();
-    } else {
-        addBookDialog.showModal();
-    }
+    addBookDialog.showModal();
 });
 
 
@@ -103,7 +111,7 @@ addBookDialog.addEventListener("submit", addBookCard);
 // test
 
 addBook("1984", "George Orwell", "400");
-addBook("The Hobbit", "Tolkien", "800");
-addBook("Dune", "Idk", "500");
+addBook("The Hobbit", "J.R.R Tolkien", "800");
+addBook("The Time Machine", "H.G. Wells", "500");
 
 displayBooks();

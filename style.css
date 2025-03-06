@@ -107,6 +107,8 @@ h1 {
     border-radius: 8px;
     border-style: solid;
     border-width: 4px;
+    padding: 24px 16px;
+    min-height: 300px;
 }
 
 svg {
@@ -124,7 +126,6 @@ svg {
     fill: var(--card-color);
 
     position: relative;
-    padding: 24px 16px;
 
     display: flex;
     flex-direction: column;
