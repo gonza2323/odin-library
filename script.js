@@ -76,6 +76,16 @@ function deleteCard(id) {
     }
 }
 
+const addBookDialog = document.querySelector(".add-dialog");
+const addBookButton = document.querySelector(".card.add");
+addBookButton.addEventListener("click", () => {
+    if (addBookDialog.open) {
+        addBookDialog.close();
+    } else {
+        addBookDialog.showModal();
+    }
+});
+
 
 // test
 
