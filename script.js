@@ -79,8 +79,9 @@ function addBookCard(event) {
     const book = addBook(title, author, noPages);
     const card = createBookCard(book);
     const booksContainer = document.querySelector(".books");
+    const firstBook = booksContainer.querySelector(".book");
 
-    booksContainer.appendChild(card);
+    booksContainer.insertBefore(card, firstBook);    
     form.reset();
 }
 
@@ -104,8 +105,6 @@ addBookButton.addEventListener("click", () => {
 
 
 addBookDialog.addEventListener("submit", addBookCard);
-
-
 
 
 // test
