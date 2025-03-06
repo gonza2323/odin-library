@@ -31,9 +31,7 @@ function deleteBook(id) {
 // UI Logic
 
 function updateView() {
-    const bookContainer = document.querySelectorAll("books");
-    const parentNode = bookContainer.parentElement;
-
+    const bookContainer = document.querySelector(".books");
     const cards = []
 
     for (const book of library) {
@@ -41,7 +39,7 @@ function updateView() {
         cards.push(bookCard);
     }
 
-    document.body.replaceChildren(...cards);
+    bookContainer.replaceChildren(...cards);
 }
 
 
@@ -88,7 +86,7 @@ function createBookCard(book) {
 
 
 function deleteButtonHandler() {
-    
+
 }
 
 // test
@@ -97,4 +95,3 @@ addBook("1984", "George Orwell", "400");
 addBook("The Hobbit", "Tolkien", "800");
 addBook("Dune", "Idk", "500");
 
-updateView();
