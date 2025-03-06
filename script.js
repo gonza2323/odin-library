@@ -4,17 +4,17 @@
 const library = [];
 
 
-function Book(title, author, noPages) {
+function Book(title, author, noPages, read) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.noPages = noPages;
-    this.isRead = false;
+    this.isRead = read;
 }
 
 
-function addBook(title, author, noPages) {
-    const book = new Book(title, author, noPages);
+function addBook(title, author, noPages, read) {
+    const book = new Book(title, author, noPages, read);
     library.push(book);
     return book;
 }
@@ -51,13 +51,15 @@ function createBookCard(book) {
     const title = card.querySelector(".title");
     const author = card.querySelector(".author");
     const pages = card.querySelector(".pages");
-    const read = card.querySelector(".read-status");
+    const readText = card.querySelector(".read-status");
+    const readCheck = card.querySelector(".read-checkbox");
 
     card.setAttribute("uuid", book.id);
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = "Pages: " + book.noPages;
-    read.textContent = book.isRead ? "Read" : "Unread";
+    readText.textContent = book.isRead ? "Read" : "Unread";
+    readCheck.checked = book.isRead;
 
     card.classList.remove("template");
     card.removeAttribute("hidden");
@@ -76,7 +78,7 @@ function addBookCard(event) {
     const author = form.elements["author"].value;
     const noPages = form.elements["noPages"].value;
     
-    const book = addBook(title, author, noPages);
+    const book = addBook(title, author, noPages, false);
     const card = createBookCard(book);
     const booksContainer = document.querySelector(".books");
     const firstBook = booksContainer.querySelector(".book");
@@ -109,8 +111,8 @@ addBookDialog.addEventListener("submit", addBookCard);
 
 // test
 
-addBook("1984", "George Orwell", "400");
-addBook("The Hobbit", "J.R.R Tolkien", "800");
-addBook("The Time Machine", "H.G. Wells", "500");
+addBook("1984", "George Orwell", "400", false);
+addBook("The Hobbit", "J.R.R Tolkien", "800", true);
+addBook("The Time Machine", "H.G. Wells", "500", true);
 
 displayBooks();
