@@ -30,64 +30,52 @@ function deleteBook(id) {
 
 // UI Logic
 
-function updateView() {
-    const bookContainer = document.querySelector(".books");
-    const cards = []
-
+function displayBooks() {
+    const booksContainer = document.querySelector(".books");
+    const oldBooks = booksContainer.querySelectorAll(".book");
+    
+    oldBooks.forEach(e => e.remove());
+    
     for (const book of library) {
         const bookCard = createBookCard(book);
-        cards.push(bookCard);
+        booksContainer.appendChild(bookCard);
     }
-
-    bookContainer.replaceChildren(...cards);
 }
 
 
 function createBookCard(book) {
-    const card = document.createElement("div");
-    card.classList.add("card");
+    const template = document.querySelector(".template");
+    const card = template.cloneNode(true);
 
-    for (const prop in book) {
-        if (prop == "id") {
-            continue
-        }
+    const title = card.querySelector(".title");
+    const author = card.querySelector(".author");
+    const pages = card.querySelector(".pages");
+    const read = card.querySelector(".read-status");
 
-        const propName = document.createElement("div");
-        const propValue = document.createElement("div");
-        
-        propName.classList.add("attrbName");
-        propValue.classList.add("attrbValue");
+    card.setAttribute("uuid", book.id);
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = "Pages: " + book.noPages;
+    read.textContent = book.isRead ? "Read" : "Unread";
 
-        propName.textContent = prop;
-        propValue.textContent = book[prop];
-        
-        const pair = document.createElement("div");
-        pair.classList.add("pair");
-        pair.appendChild(propName);
-        pair.appendChild(propValue);
+    card.classList.remove("template");
+    card.removeAttribute("hidden");
 
-        card.appendChild(pair);
-    }
-
-    const readButton = document.createElement("button");
-    const deleteButton = document.createElement("button");
-    
-    readButton.classList.add("read");
-    deleteButton.classList.add("delete");
-
-    readButton.textContent = "Read";
-    deleteButton.textContent = "Delete";
-
-    card.appendChild(readButton);
-    card.appendChild(deleteButton);
+    const deleteButton = card.querySelector(".delete");
+    deleteButton.addEventListener("click", () => deleteCard(book.id));
 
     return card;
 }
 
 
-function deleteButtonHandler() {
-
+function deleteCard(id) {
+    deleteBook(id);
+    const card = document.querySelector(`.book[uuid="${id}"]`);
+    if (card) {
+        card.remove();
+    }
 }
+
 
 // test
 
@@ -95,3 +83,4 @@ addBook("1984", "George Orwell", "400");
 addBook("The Hobbit", "Tolkien", "800");
 addBook("Dune", "Idk", "500");
 
+displayBooks();
