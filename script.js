@@ -120,16 +120,18 @@ function changeReadStatus(id, readText, checkbox) {
 }
 
 
-const addBookButton = document.querySelector(".card.add");
 const addBookDialog = document.querySelector(".add-dialog");
+const addBookButton = document.querySelector(".card.add");
 
-
+addBookDialog.addEventListener("submit", addBookCard);
 addBookButton.addEventListener("click", () => {
     addBookDialog.showModal();
 });
 
 
-addBookDialog.addEventListener("submit", addBookCard);
+const closeDialogButton = document.querySelector(".cancel");
+closeDialogButton.addEventListener("click",
+    () => addBookDialog.close());
 
 
 // initial data
