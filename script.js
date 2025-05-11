@@ -4,17 +4,18 @@
 const library = [];
 
 
-function Book(title, author, noPages, read) {
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.noPages = noPages;
-    this.isRead = read;
-}
+class Book {
+    constructor(title, author, noPages, read) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.noPages = noPages;
+        this.isRead = read;
+    }
 
-
-Book.prototype.toggleReadStatus = function() {
-    this.isRead = !this.isRead;
+    toggleReadStatus() {
+        this.isRead = !this.isRead;
+    }
 }
 
 
